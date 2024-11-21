@@ -1,0 +1,22 @@
+# Ignore all files in this directory
+.idea/
+.vscode/
+node_modules/
+
+# Ignore .env file
+.env
+
+# Ignore file lock
+package-lock.json
+
+# Ignore Docker Volumes
+sql/data/
+sql/logs/
+
+# Ignore files-config terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
+.terraform.lock.info
+.terraform.lock.json
