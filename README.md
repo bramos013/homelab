@@ -1,8 +1,7 @@
 ## Homelab
 
-Ambiente seguro utilizando infraestrutura como código onde existam
-redes internas apenas acessíveis por certas aplicações e redes externas para
-contato com o usuário. 
+Ambiente provisionado utilizando **`(Infra As Code)`** com **Terraform** e **Docker**.
+*(Projeto desenvolvido para fins de estudo e prática)*.
 
 **Setup:**
 
@@ -12,7 +11,11 @@ $ sh ./validate_requirements.sh
 
 ## Configuração
 
-Após validar as ferramentas, você deverá configurar o ambiente para provisionar a infraestrutura.
+Após validar as ferramentas, você deverá configurar o ambiente para gerar as imagens Docker utilizando `Makefile`.
+
+```bash
+$ make build-all
+```
 
 Acesse o diretório `terraform` e execute o comando abaixo para inicializar o Terraform.
 
