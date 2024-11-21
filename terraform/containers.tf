@@ -1,7 +1,24 @@
-resource "docker_container" "web-sql" {
-  image   = docker_image.web-sql.image_id
-  name    = "web-sql"
-  restart = "on-failure"
+resource "docker_image" "homelab-sql" {
+  name         = "homelab-sql:latest"
+  keep_locally = true
+
+}
+
+resource "docker_image" "homelab-backend" {
+  name         = "homelab-backend:latest"
+  keep_locally = true
+}
+
+resource "docker_image" "homelab-frontend" {
+  name         = "homelab-frontend:latest"
+  keep_locally = true
+}
+
+resource "docker_container" "homelab-sql" {
+  image    = docker_image.homelab-sql.image_id
+  name     = "homelab-sql"
+  restart  = "on-failure"
+  hostname = "homelab-sql"
 
   env = [
     "POSTGRES_USER=${var.POSTGRES_USER}",
@@ -14,24 +31,25 @@ resource "docker_container" "web-sql" {
   }
 
   volumes {
-    volume_name    = "web-sql-volume-logs"
+    volume_name    = "homelab-sql-volume-logs"
     container_path = "/var/log/postgresql"
     host_path      = "/sql/log"
   }
 
   volumes {
-    volume_name    = "web-sql-volume-data"
+    volume_name    = "homelab-sql-volume-data"
     container_path = "/var/lib/postgresql/data"
     host_path      = "/sql/data"
   }
 }
 
-resource "docker_container" "web-backend" {
-  image   = docker_image.web-backend.image_id
-  name    = "web-backend"
-  restart = "on-failure"
+resource "docker_container" "homelab-backend" {
+  image    = docker_image.homelab-backend.image_id
+  name     = "homelab-backend"
+  restart  = "on-failure"
+  hostname = "homelab-backend"
   depends_on = [
-    docker_container.web-sql
+    docker_container.homelab-sql
   ]
 
   env = [
@@ -48,19 +66,20 @@ resource "docker_container" "web-backend" {
   }
 
   volumes {
-    volume_name    = "web-backend-volume"
+    volume_name    = "homelab-backend-volume"
     container_path = "/usr/src/app"
     host_path      = "/backend"
   }
 }
 
-resource "docker_container" "web-frontend" {
-  image   = docker_image.web-frontend.image_id
-  name    = "web-frontend"
-  restart = "on-failure"
+resource "docker_container" "homelab-frontend" {
+  image    = docker_image.homelab-frontend.image_id
+  name     = "homelab-frontend"
+  restart  = "on-failure"
+  hostname = "homelab-frontend"
   depends_on = [
-    docker_container.web-sql,
-    docker_container.web-backend
+    docker_container.homelab-sql,
+    docker_container.homelab-backend
   ]
 
   networks_advanced {
@@ -71,13 +90,14 @@ resource "docker_container" "web-frontend" {
     name = docker_network.sql-network.name
   }
 
+
   ports {
     internal = var.frontend_port
     external = var.frontend_port
   }
 
   volumes {
-    volume_name    = "web-frontend-volume"
+    volume_name    = "homelab-frontend-volume"
     container_path = "/usr/src/app"
     host_path      = "/frontend"
   }

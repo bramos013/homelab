@@ -1,19 +1,19 @@
 resource "docker_volume" "sql-data" {
-  name   = "web-sql-volume-data"
+  name   = "homelab-sql-volume-data"
   driver = "local"
 }
 
 resource "docker_volume" "sql-logs" {
-  name   = "web-sql-volume-logs"
+  name   = "homelab-sql-volume-logs"
   driver = "local"
 }
 
 resource "docker_volume" "sql-init" {
-  name   = "web-sql-volume-init"
+  name   = "homelab-sql-volume-init"
   driver = "local"
 }
 
 resource "docker_volume" "prometheus-data" {
-  name   = "web-prometheus-volume-data"
+  name   = "homelab-prometheus-volume-data"
   driver = "local"
 }

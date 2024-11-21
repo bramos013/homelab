@@ -40,18 +40,18 @@ Feito isso, aguardar a execução do Terraform e a infraestrutura estará pronta
 <summary><strong>IMAGES</strong></summary>
 
 ```hcl
-- web-frontend;
-- web-backend; 
-- web-sql
+- homelab-frontend;
+- homelab-backend; 
+- homelab-sql
 ```
 </details>
 <details>
 <summary><strong>CONTAINERS</strong></summary>
 
 ```hcl
-- web-frontend;
-- web-backend;
-- web-sql
+- homelab-frontend;
+- homelab-backend;
+- homelab-sql
 ```
 </details>
 <details>
@@ -80,8 +80,8 @@ Feito isso, aguardar a execução do Terraform e a infraestrutura estará pronta
 ### Endpoints
 
 - [http://localhost](http://localhost:80) - **Frontend** (Acesso visível externamente);
-- [http://web-backend:3001](http://web-backend:3001) - **Backend**(Acesso restrito a rede interna sql-network);
-- [http://web-sql:5432](http://web-sql:5432) - **Backend**(Acesso restrito a rede interna sql-network);
+- [http://homelab-backend:3001](http://homelab-backend:3001) - **Backend**(Acesso restrito a rede interna sql-network);
+- [http://homelab-sql:5432](http://homelab-sql:5432) - **Backend**(Acesso restrito a rede interna sql-network);
 
 Caso queira destruir a infraestrutura, execute o comando abaixo **(ATENÇÃO AO EXECUTAR A AÇÃO)**.
 

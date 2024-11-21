@@ -14,11 +14,11 @@ provider "docker" {
 
 resource "null_resource" "create-aliases" {
   depends_on = [
-    docker_container.web-backend,
-    docker_container.web-frontend,
+    docker_container.homelab-backend,
+    docker_container.homelab-frontend,
   ]
 
   provisioner "local-exec" {
-    command = "docker network connect --alias web-backend sql-network ${docker_container.web-backend.name}"
+    command = "docker network connect --alias homelab-backend sql-network ${docker_container.homelab-backend.name}"
   }
 }
