@@ -1,0 +1,13 @@
+{
+  "name": "api-backend",
+  "version": "1.0.0",
+  "description": "Api-Backend",
+  "main": "index.js",
+  "type": "module",
+  "author": "Bruno Ramos",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.11.3",
+    "dotenv": "^16.3.1"
+  }
+}
